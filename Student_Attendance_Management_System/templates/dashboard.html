@@ -1,0 +1,14 @@
+{% extends "base.html" %}{% block title %}Dashboard{% endblock %}
+{% block content %}
+<h1>Dashboard</h1><p class="muted">A quick view of recorded student attendance.</p>
+<section class="cards">
+<div class="card"><span>Total students</span><strong>{{ summary.total_students }}</strong></div>
+<div class="card"><span>Present today</span><strong>{{ summary.present_today }}</strong></div>
+<div class="card"><span>Below threshold</span><strong>{{ summary.low_attendance }}</strong></div>
+</section>
+<h2>Student directory</h2>
+<table><thead><tr><th>Roll number</th><th>Name</th><th>Email</th></tr></thead><tbody>
+{% for s in students %}<tr><td>{{ s.roll_number }}</td><td>{{ s.name }}</td><td>{{ s.email or "—" }}</td></tr>
+{% else %}<tr><td colspan="3">No students found.</td></tr>{% endfor %}
+</tbody></table>
+{% endblock %}

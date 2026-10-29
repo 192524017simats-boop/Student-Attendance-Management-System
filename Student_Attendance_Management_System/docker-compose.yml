@@ -1,0 +1,13 @@
+services:
+  attendance-app:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      SECRET_KEY: ${SECRET_KEY:-change-this-for-local-use}
+      DATABASE_PATH: /app/data/attendance.db
+      LOW_ATTENDANCE_THRESHOLD: ${LOW_ATTENDANCE_THRESHOLD:-75}
+    volumes:
+      - attendance-data:/app/data
+volumes:
+  attendance-data:

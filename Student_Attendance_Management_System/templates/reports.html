@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block title %}Reports{% endblock %}
+{% block content %}<h1>Attendance reports</h1><p><a class="button" href="{{ url_for('export_csv') }}">Download CSV</a></p>
+<table><thead><tr><th>Roll number</th><th>Name</th><th>Attended</th><th>Recorded sessions</th><th>Attendance</th></tr></thead><tbody>
+{% for r in rows %}<tr><td>{{ r.roll_number }}</td><td>{{ r.name }}</td><td>{{ r.attended }}</td><td>{{ r.sessions }}</td><td>{{ "%.1f"|format(r.percentage) }}%</td></tr>
+{% else %}<tr><td colspan="5">No students found.</td></tr>{% endfor %}</tbody></table>
+<p class="muted">Attendance is calculated from recorded sessions; excused sessions are currently included in the denominator.</p>{% endblock %}

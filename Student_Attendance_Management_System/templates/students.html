@@ -1,0 +1,10 @@
+{% extends "base.html" %}{% block title %}Students{% endblock %}
+{% block content %}<h1>Students</h1>
+<form method="post" class="panel">
+<h2>Add a student</h2><label>Roll number <input name="roll_number" required maxlength="30"></label>
+<label>Full name <input name="name" required maxlength="100"></label>
+<label>Email (optional) <input name="email" type="email" maxlength="150"></label>
+<button type="submit">Add student</button></form>
+<h2>Registered students</h2><table><thead><tr><th>Roll number</th><th>Name</th><th>Email</th></tr></thead><tbody>
+{% for s in students %}<tr><td>{{ s.roll_number }}</td><td>{{ s.name }}</td><td>{{ s.email or "—" }}</td></tr>
+{% else %}<tr><td colspan="3">No students yet.</td></tr>{% endfor %}</tbody></table>{% endblock %}
